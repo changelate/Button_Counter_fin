@@ -1,0 +1,22 @@
+{
+  "name": "button_counter",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/changelate/Button_Counter.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/changelate/Button_Counter/issues"
+  },
+  "homepage": "https://github.com/changelate/Button_Counter#readme",
+  "description": "",
+  "dependencies": {
+    "button_counter": "file:"
+  }
+}

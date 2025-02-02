@@ -1,0 +1,83 @@
+/* Подключаем шрифт Roboto */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap');
+
+.component-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 760px;
+  height: 120px;
+  border-radius: 16px;
+  border: 1px solid #32170014;
+  background-color: #F7F4F2; /* Новый цвет компонента */
+  position: absolute;
+  top: 25%;
+  left: 25%;
+}
+
+.component-box.stroke {
+  border-width: var(--stroke-width, 2px);
+}
+
+.indicator-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.indicator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background-color: rgb(241, 133, 9);
+  color: white;
+  font-size: calc(var(--size, 16px) / 3);
+  font-weight: bold;
+  font-family: 'Roboto', sans-serif;
+  position: relative;
+  transition: transform 0.3s ease-in-out;
+  z-index: 2;  /* Индикатор всегда выше пульсации */
+}
+
+/* Пульсация, когда наводим на индикатор */
+.indicator:hover + .pulse {
+  animation: red-dot-scale-fade 1s infinite; /* Сделаем анимацию чуть реже */
+}
+
+.pulse {
+  position: absolute;
+  height: 12px;  /* Сделаем пульсацию еще меньше */
+  width: 12px;   /* Сделаем пульсацию еще меньше */
+  border-radius: 999px;
+  background-color: green; /* Цвет пульсации - зеленый */
+  top: 1.9px;  /* Сместим пульсацию чуть выше индикатора */
+  left: 1.9px; /* Сместим пульсацию левее индикатора */
+  transform: translate(-50%, -50%);
+  z-index: 1;  /* Пульсация будет за индикатором */
+  opacity: 0;
+}
+
+.pulse.one {
+  animation-delay: 0s; /* Первая пульсация исчезает первой */
+}
+
+.pulse.two {
+  animation-delay: 0.5s; /* Вторая пульсация с задержкой, исчезает позже */
+}
+
+@keyframes red-dot-scale-fade {
+  0% {
+    opacity: 0.5;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0;
+    transform: scale(2); /* Сделаем пульсацию чуть меньше */
+  }
+  100% {
+    opacity: 0;
+    transform: scale(2); /* Сделаем пульсацию чуть меньше */
+  }
+}
