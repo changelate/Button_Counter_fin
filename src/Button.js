@@ -14,7 +14,7 @@ const Button = ({
   hovered = false,
   pressed = false,
   disabled = false,
-  children, // Теперь можно передавать Counter внутрь
+  children,
 }) => {
   const [buttonState, setButtonState] = useState(state);
   const config = SIZE_CONFIG[size] || SIZE_CONFIG[36];
@@ -37,7 +37,7 @@ const Button = ({
         ) : (
           <div className="button-content">
             <span className="label">{label}</span>
-            {children} {/* Теперь сюда можно передавать Counter */}
+            {children}
           </div>
         )}
       </div>
@@ -48,4 +48,4 @@ const Button = ({
   );
 };
 
-export default Button; // ✅ Экспорт по умолчанию
+export default Button;
