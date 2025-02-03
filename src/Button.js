@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import "./Button.css";
-import Counter from "./Counter";
 
 const SIZE_CONFIG = {
   28: { paddingH: 10, paddingV: 6, gap: 4, loaderSize: 16 },
@@ -11,11 +10,11 @@ const SIZE_CONFIG = {
 const Button = ({
   size = 36,
   state = "enabled",
-  counter = true,
   label = "Что сделать",
   hovered = false,
   pressed = false,
-  disabled = false
+  disabled = false,
+  children, // Теперь можно передавать Counter внутрь
 }) => {
   const [buttonState, setButtonState] = useState(state);
   const config = SIZE_CONFIG[size] || SIZE_CONFIG[36];
@@ -23,27 +22,22 @@ const Button = ({
   const handleClick = () => {
     if (buttonState !== "enabled") return;
     setButtonState("loading");
-    setTimeout(() => setButtonState("enabled"), 2000); // Имитация загрузки
+    setTimeout(() => setButtonState("enabled"), 2000);
   };
 
-  const buttonClassNames = `button ${buttonState} size-${size} ${hovered ? 'hovered' : ''} ${pressed ? 'pressed' : ''} ${disabled ? 'disabled' : ''}`;
+  const buttonClassNames = `button ${buttonState} size-${size} ${hovered ? "hovered" : ""} ${
+    pressed ? "pressed" : ""
+  } ${disabled ? "disabled" : ""}`;
 
   return (
-    <button
-      className={buttonClassNames}
-      onClick={handleClick}
-      disabled={disabled}
-    >
+    <button className={buttonClassNames} onClick={handleClick} disabled={disabled}>
       <div className="content-group">
         {buttonState === "loading" ? (
-          <div
-            className="loader"
-            style={{ width: config.loaderSize, height: config.loaderSize }}
-          />
+          <div className="loader" style={{ width: config.loaderSize, height: config.loaderSize }} />
         ) : (
           <div className="button-content">
             <span className="label">{label}</span>
-            {counter && <Counter size={16} count={5} />}
+            {children} {/* Теперь сюда можно передавать Counter */}
           </div>
         )}
       </div>
@@ -54,4 +48,4 @@ const Button = ({
   );
 };
 
-export default Button;
+export default Button; // ✅ Экспорт по умолчанию
